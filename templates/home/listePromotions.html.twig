@@ -6,14 +6,14 @@
     <h1>Liste des promotions en cours</h1>
     <br />
 
-    {% if promotions is not null %}
+    {% if promotions is not empty %}
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Reduction</th>
-                    <th scope="col">Date d'expriration</th>
+                    <th scope="col">Date d'expiration</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
             </tbody>
         </table>
     {% else %}
-        <p>Il n'y a pas de coupons</p>
+        <p>Il n'y a pas de promotions en cours !</p>
     {% endif %}
 
 {% endblock %}
