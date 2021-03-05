@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste promotions{% endblock %}
+
+{% block body %}
+    <h1>Liste des promotions en cours</h1>
+    <br />
+
+    {% if promotions is not null %}
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Reduction</th>
+                    <th scope="col">Date d'expriration</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for promotion in promotions %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ promotion.titre }}</td>
+                    <td>{{ promotion.reduc }} %</td>
+                    <td>{{ promotion.dateExpire |date("d/m/Y") }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Il n'y a pas de coupons</p>
+    {% endif %}
+
+{% endblock %}

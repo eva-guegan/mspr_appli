@@ -22,4 +22,17 @@ class HomeController extends AbstractController
             "coupons" => $coupons,
         ]);
     }
+
+    /**
+     * @Route("/liste_promotions", name="liste_promotions")
+     */
+    public function listePromotions(HttpClientInterface $client): Response
+    {
+        $promotions = new Api($client);
+        $promotions = $promotions->listeCoupons('http://localhost:8083/coupons');
+
+        return $this->render('home/listePromotions.html.twig', [
+            "promotions" => $promotions,
+        ]);
+    }
 }
