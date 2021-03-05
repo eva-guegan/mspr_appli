@@ -38,13 +38,16 @@ class Api
             $content = json_decode($content);
 
             $content = $content->_embedded->coupons;
-            dump($content);
+            $dateNow = date('Y-m-d');
             foreach ($content as $json){
                 $urlDetail = $json->_links->coupon;
                 $id = $urlDetail->href;
                 $id = explode('/', $id);
-                $coupon = new Coupon($id[sizeof($id)-1], $json->titre, $json->reduc, $json->dateexpire);
-                $collection->add($coupon);
+
+                if ($json->dateexpire >= $dateNow) {
+                    $coupon = new Coupon($id[sizeof($id)-1], $json->titre, $json->reduc, $json->dateexpire);
+                    $collection->add($coupon);
+                }
             }
         }
 
